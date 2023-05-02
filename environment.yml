@@ -1,0 +1,29 @@
+name: aicup-2023-spring-nlp
+channels:
+  - nvidia
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch::pytorch
+  - pytorch::pytorch-cuda=11.8
+  # - nvidia/label/cuda-11.8.0::cuda
+  # - conda-forge::cmake
+  # - conda-forge::gcc=8
+  # - conda-forge::cxx-compiler
+  # - conda-forge::pkg-config
+  - pip:
+      - datasets
+      # - deepspeed
+      - faiss-gpu
+      - fire
+      - ipykernel
+      - ipywidgets==7.7.1
+      - lightning
+      - safetensors
+      - sentence-transformers
+      - transformers
+      - wandb
+      - -e .
+variables:
+  HF_HOME: .cache
+  SENTENCE_TRANSFORMERS_HOME: .cache/sentence_transformers
