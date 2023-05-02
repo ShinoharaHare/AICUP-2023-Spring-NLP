@@ -1,6 +1,11 @@
 /logs
 /checkpoints
 /tmpfs
+/data
+/predictions
+
+!/**/.gitkeep
+
 temp*.*
 
 # Byte-compiled / optimized / DLL files
