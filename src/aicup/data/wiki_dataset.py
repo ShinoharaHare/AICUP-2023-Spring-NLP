@@ -40,21 +40,8 @@ class WikiDataset(TorchDataset):
     def has(self, title: str):
         return title in self.t2i
     
-    def add_elasticsearch_index(
-        self,
-        hosts: Optional[str] = None,
-        ca_certs: Optional[str] = None,
-        basic_auth: Optional[Tuple[str, str]] = None,
-    ):
-        es_client = Elasticsearch(
-            hosts=hosts,
-            ca_certs=ca_certs,
-            basic_auth=basic_auth
-        )
-        self.dataset.add_elasticsearch_index('text', 'wiki-text', es_client=es_client)
-    
-    def load_elasticsearch_index(
-        self,
+    @staticmethod
+    def get_es_client(
         hosts: Optional[str] = None,
         ca_certs: Optional[str] = None,
         basic_auth: Optional[Tuple[str, str]] = None,
@@ -65,11 +52,28 @@ class WikiDataset(TorchDataset):
             if username and password:
                 basic_auth = (username, password)
 
-        es_client = Elasticsearch(
+        return Elasticsearch(
             hosts=hosts or os.environ.get('ES_HOSTS', None),
             ca_certs=ca_certs or os.environ.get('ES_CA_CERTS', None),
             basic_auth=basic_auth,
         )
+    
+    def add_elasticsearch_index(
+        self,
+        hosts: Optional[str] = None,
+        ca_certs: Optional[str] = None,
+        basic_auth: Optional[Tuple[str, str]] = None,
+    ):
+        es_client = self.get_es_client(hosts, ca_certs, basic_auth)
+        self.dataset.add_elasticsearch_index('text', 'wiki-text', es_client=es_client)
+    
+    def load_elasticsearch_index(
+        self,
+        hosts: Optional[str] = None,
+        ca_certs: Optional[str] = None,
+        basic_auth: Optional[Tuple[str, str]] = None,
+    ):
+        es_client = self.get_es_client(hosts, ca_certs, basic_auth)
         self.dataset.load_elasticsearch_index('text', 'wiki-text', es_client=es_client)
 
     def retrieve(

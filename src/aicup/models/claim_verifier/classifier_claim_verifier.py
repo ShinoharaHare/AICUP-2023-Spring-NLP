@@ -85,26 +85,6 @@ class ClassifierClaimVerifier(LightningModuleX):
         self.train_accuracy = Accuracy(task='multiclass', num_classes=3)
         self.val_accuracy = Accuracy(task='multiclass', num_classes=3)
     
-    # def configure_optimizers(self):
-    #     optimizer_config = {}
-    #     optimizer_config['optimizer'] = optim.SGD(
-    #         [p for p in self.parameters() if p.requires_grad],
-    #         lr=self.learning_rate,
-    #         momentum=self.betas[0],
-    #         weight_decay=self.weight_decay,
-    #     )
-    #     optimizer_config['lr_scheduler'] = {
-    #         'scheduler': get_lr_scheduler(
-    #             scheduler_type=self.lr_scheduler_type,
-    #             optimizer=optimizer_config['optimizer'],
-    #             num_warmup_steps=self.num_warmup_steps,
-    #             num_training_steps=self.trainer.estimated_stepping_batches,
-    #             min_lr_factor=self.min_lr_factor,
-    #         ),
-    #         'interval': 'step',
-    #     }
-    #     return optimizer_config
-    
     def forward(
         self,
         input_ids: Optional[torch.Tensor] = None,

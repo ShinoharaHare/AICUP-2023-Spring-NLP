@@ -124,27 +124,6 @@ class PairwiseRankingSentenceRetriever(LightningModuleX):
         self.log('Loss/Train/Step', loss)
         return loss
 
-    # def validation_step(self, batch: _BatchType, batch_idx: int):
-    #     outputs1: SequenceClassifierOutput = self(**batch['positive'])
-    #     outputs2: SequenceClassifierOutput = self(**batch['negative'])
-    #     loss = self.loss_fn(outputs1.logits, outputs2.logits, batch['labels'])
-                
-    #     self.log('loss', loss, prog_bar=True, logger=False)
-    #     self.log('Loss/Val', loss, sync_dist=True)
-
-    #     self.val_precision.update(outputs1.logits, torch.ones_like(batch['labels']))
-    #     self.val_precision.update(outputs2.logits, torch.zeros_like(batch['labels']))
-
-    #     self.val_recall.update(outputs1.logits, torch.ones_like(batch['labels']))
-    #     self.val_recall.update(outputs2.logits, torch.zeros_like(batch['labels']))
-
-    #     self.val_f1.update(outputs1.logits, torch.ones_like(batch['labels']))
-    #     self.val_f1.update(outputs2.logits, torch.zeros_like(batch['labels']))
-    #     self.log('Precision/Val', self.val_precision)
-    #     self.log('Recall/Val', self.val_recall)
-    #     self.log('F1/Val', self.val_f1)
-    #     return loss
-
     def on_validation_epoch_start(self) -> None:
         if not self.trainer.sanity_checking:
             self.half()
