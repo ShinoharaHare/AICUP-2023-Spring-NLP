@@ -93,7 +93,7 @@ End-to-End 的腳本，輸入原始 JSON Lines 的測試資料，輸出用來提
 
 ## 資料 & 權重
 
-預處理的資料及預訓練的模型權重存放於 [Hugging Face](https://huggingface.co/ShinoharaHare/AICUP-2023-Spring-NLP) 的 Repository
+預處理的資料及預訓練的模型權重存放於 [Hugging Face](https://huggingface.co/ShinoharaHare/AICUP-2023-Spring-NLP)
 
 - `data/claim_dataset`: 使用[此腳本](#scriptsutilscreate_claim_datasetpy) 處理過的訓練資料集
 - `data/wiki_dataset`: 使用[此腳本](#scriptsutilscreate_wiki_datasetpy) 處理過的 Wiki 資料集
