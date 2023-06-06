@@ -14,6 +14,10 @@ mamba env create -f environment.yml
 conda activate aicup-2023-spring-nlp
 ```
 
+## 使用範例
+
+請參考 [examples.ipynb](examples.ipynb)
+
 ## 核心模組
 
 ### [`NounExtractor`](src/aicup/utils/noun_extractor.py)
@@ -86,3 +90,14 @@ conda activate aicup-2023-spring-nlp
 ### [scripts/e2e/prsr_ccv.py](scripts/e2e/prsr_ccv.py)
 
 End-to-End 的腳本，輸入原始 JSON Lines 的測試資料，輸出用來提交至 AI 實戰吧的檔案，其中使用了 Pairwise Ranking Sentence Retriever 及 Classifier Claim Verifier 來進行預測
+
+## 資料 & 權重
+
+預處理的資料及預訓練的模型權重存放於 [Hugging Face](https://huggingface.co/ShinoharaHare/AICUP-2023-Spring-NLP) 的 Repository
+
+- `data/claim_dataset`: 使用[此腳本](#scriptsutilscreate_claim_datasetpy) 處理過的訓練資料集
+- `data/wiki_dataset`: 使用[此腳本](#scriptsutilscreate_wiki_datasetpy) 處理過的 Wiki 資料集
+- `data/sentence_retrieval/pairwise_ranking`: 使用[此腳本](#scriptssentence_retrievalprepare_pairwise_ranking_datasetpy) 生成的資料集，用來訓練 Pairwise Ranking Sentence Retriever
+- `data/claim_verification/classifier_prsr`: 使用[此腳本](#scriptsclaim_verificationprepare_classifier_dataset_prsrpy) 生成的資料集，用來訓練 Classifier Claim Verifier
+- `sentence_retriever/e8hneqtg/e2.weights.ckpt`: Pairwise Ranking Sentence Retriever 的模型權重
+- `claim_verifier/7xet7u1m/e9.weights.ckpt`: Classifier Claim Verifier 的模型權重
