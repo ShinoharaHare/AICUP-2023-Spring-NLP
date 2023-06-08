@@ -1,5 +1,7 @@
 # AICUP-2023-Spring-NLP
 
+隊伍：TEAM_3323
+
 ## 建立環境
 
 1. 安裝 Elasticsearch，請參考 [此處](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
